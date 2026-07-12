@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TZ - Timezone Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-bar">
+                <h1>TZ</h1>
+                <button id="theme-toggle-btn" class="theme-toggle-btn" aria-describedby="theme-help" title="Toggle Dark Mode">&#9728;&#65039;</button>
+            </div>
+            <div id="theme-help" class="sr-only">Switch between light and dark theme</div>
+            <p>Convert natural language or timestamp date/time strings to different timezones</p>
+            <p class="tz-note">Timezones are saved in your browser. Click any timezone to remove it, or use reset to clear all</p>
+        </header>
+        
+        <main>
+            <div class="input-section">
+                <label for="datetime-input">Enter date/time (e.g., "tomorrow at 3pm", "next Friday", "in 24 hours", "1609459200")</label>
+                <input type="text" id="datetime-input" placeholder="Enter natural language date/time..." aria-describedby="datetime-help">
+                <div id="datetime-help" class="sr-only">Enter natural language date and time expressions or Unix timestamps</div>
+            </div>
+            
+            <div class="timezone-section">
+                <label for="timezone-input">Add timezones:</label>
+                <input type="text" id="timezone-input" placeholder="Type timezone and press Enter..." aria-describedby="timezone-help" role="combobox" aria-autocomplete="list" aria-expanded="false">
+                <div id="timezone-help" class="sr-only">Type timezone name or abbreviation and press Enter to add. Use arrow keys to navigate suggestions.</div>
+                <button id="reset-timezones-btn" class="reset-btn" aria-describedby="reset-help">Reset Timezones</button>
+                <div id="reset-help" class="sr-only">Remove all selected timezones and reset to browser default</div>
+                <div id="timezone-list" class="timezone-list" aria-label="Selected timezones" role="list"></div>
+            </div>
+            <!-- Format selection -->
+            <div class="format-section">
+                <fieldset>
+                    <legend>Output format:</legend>
+                    <button class="fmt-btn selected" data-format="long" role="radio" aria-checked="true">Long</button>
+                    <button class="fmt-btn" data-format="short" role="radio" aria-checked="false">Short</button>
+                    <button class="fmt-btn" data-format="iso" role="radio" aria-checked="false">ISO</button>
+                </fieldset>
+            </div>
+            
+            <button id="convert-btn" class="convert-btn" aria-describedby="convert-help">Convert</button>
+            <div id="convert-help" class="sr-only">Convert the entered date/time to all selected timezones</div>
+            
+            <div id="results" class="results-section">
+                <!-- Timeline visualization -->
+                <div id="timeline" class="timeline"></div>
+                <!-- Conversion results list -->
+                <div id="conversion-list" class="conversion-list"></div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sugar@2.0.6/dist/sugar.min.js"></script>
+    <script type="module" src="dist/main.js"></script>
+</body>
+</html>
