@@ -272,14 +272,19 @@ class App {
   }
 
   private showError(message: string): void {
-    this.resultsDiv.innerHTML = `
-      <div class="error-message">
-        <h3>Error:</h3>
-        <p>${message}</p>
-      </div>
-      <div id="timeline" class="timeline"></div>
-      <div id="conversion-list" class="conversion-list"></div>
-    `;
+    this.resetResultsContainer();
+    const errorDiv = document.createElement("div");
+    errorDiv.className = "error-message";
+
+    const errorTitle = document.createElement("h3");
+    errorTitle.textContent = "Error:";
+
+    const errorText = document.createElement("p");
+    errorText.textContent = message;
+
+    errorDiv.appendChild(errorTitle);
+    errorDiv.appendChild(errorText);
+    this.resultsDiv.insertBefore(errorDiv, this.resultsDiv.firstChild);
     this.resultsDiv.style.display = "block";
   }
   /** Load output format from localStorage */
